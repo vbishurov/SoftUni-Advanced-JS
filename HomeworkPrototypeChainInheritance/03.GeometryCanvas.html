@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        textarea {
+            resize: none;
+        }
+    </style>
+</head>
+<body>
+<form action="">
+    <label for="x">X:</label>
+    <input type="text" id="x"/>
+    <label for="y">Y:</label>
+    <input type="text" id="y"/>
+    <label for="color">Color:</label>
+    <input type="color" id="color"/><br/>
+    <label for="radius">Radius:</label>
+    <input type="text" id="radius"/><br/>
+    <label for="width">Width:</label>
+    <input type="text" id="width"/>
+    <label for="height">Height:</label>
+    <input type="text" id="height"/><br/>
+
+    <label for="shape"></label>
+    <select name="shape" id="shape">
+        <option value="circle">Circle</option>
+        <option value="rectangle">Rectangle</option>
+        <option value="triangle">Triangle</option>
+        <option value="line">Line</option>
+        <option value="segment">Segment</option>
+    </select><br/>
+
+    <label for="x2">X2:</label>
+    <input type="text" id="x2"/>
+    <label for="y2">Y2:</label>
+    <input type="text" id="y2"/><br/>
+    <label for="x3">X3:</label>
+    <input type="text" id="x3"/>
+    <label for="y3">Y3:</label>
+    <input type="text" id="y3"/><br/>
+
+    <textarea name="shapes" id="shapes" cols="90" rows="10"></textarea><br/>
+
+    <input type="button" value="Add" onclick="addShape()"/><br/>
+</form>
+
+<canvas id="canvas" width="600" height="600"></canvas>
+
+<script src="simpleInheritance.js"></script>
+<script src="02.geometryStructure-Prototypal.js"></script>
+<script src="03.geometryCanvas.js"></script>
+</body>
+</html>
