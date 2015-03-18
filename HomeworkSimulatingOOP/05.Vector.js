@@ -1,84 +1,91 @@
 "use strict";
 
 function Vector(arrayOfComponents) {
-	if (!arrayOfComponents || arrayOfComponents.length < 1) {
-		throw "Empty componenets not allowed";
-	}
+    if (!arrayOfComponents || arrayOfComponents.length < 1) {
+        throw "Empty componenets not allowed";
+    }
 
-	this.components = arrayOfComponents;
+    this.components = arrayOfComponents;
 }
 
 Vector.prototype = {
-	get components() {
-		return this._components;
-	},
-	set components(value) {
-		this._components = value;
-	},
-	toString: function () {
-		return "(" + this.components.join(", ") + ")";
-	},
-	add: function (otherVector) {
-		if (!(otherVector instanceof Vector) || !(this instanceof Vector)) {
-			throw "Command is applicable to vectors only.";
-		}
+    get components() {
+        return this._components;
+    },
+    set components(value) {
+        this._components = value;
+    },
+    toString: function () {
+        return "(" + this.components.join(", ") + ")";
+    },
+    add: function (otherVector) {
+        var newComponents = [],
+            i;
 
-		if (this.components.length != otherVector.components.length) {
-			throw "Cannot add Vectors of different size.";
-		}
+        if (!(otherVector instanceof Vector) || !(this instanceof Vector)) {
+            throw "Command is applicable to vectors only.";
+        }
 
-		var newComponents = [];
-		for (var i = 0; i < this.components.length; i++) {
-			newComponents.push(this.components[i] + otherVector.components[i]);
-		}
+        if (this.components.length != otherVector.components.length) {
+            throw "Cannot add Vectors of different size.";
+        }
 
-		return new Vector(newComponents);
-	},
-	subtract: function (otherVector) {
-		if (!(otherVector instanceof Vector) || !(this instanceof Vector)) {
-			throw "Command is applicable to vectors only.";
-		}
+        for (i = 0; i < this.components.length; i++) {
+            newComponents.push(this.components[i] + otherVector.components[i]);
+        }
 
-		if (this.components.length != otherVector.components.length) {
-			throw "Cannot add Vectors of different size.";
-		}
+        return new Vector(newComponents);
+    },
+    subtract: function (otherVector) {
+        var newComponents = [],
+            i;
 
-		var newComponents = [];
-		for (var i = 0; i < this.components.length; i++) {
-			newComponents.push(this.components[i] - otherVector.components[i]);
-		}
+        if (!(otherVector instanceof Vector) || !(this instanceof Vector)) {
+            throw "Command is applicable to vectors only.";
+        }
 
-		return new Vector(newComponents);
-	},
-	dot: function (otherVector) {
-		if (!(otherVector instanceof Vector) || !(this instanceof Vector)) {
-			throw "Command is applicable to vectors only.";
-		}
+        if (this.components.length != otherVector.components.length) {
+            throw "Cannot add Vectors of different size.";
+        }
 
-		if (this.components.length != otherVector.components.length) {
-			throw "Cannot add Vectors of different size.";
-		}
+        for (i = 0; i < this.components.length; i++) {
+            newComponents.push(this.components[i] - otherVector.components[i]);
+        }
 
-		var sum = 0;
-		for (var i = 0; i < this.components.length; i++) {
-			sum += this.components[i] * otherVector.components[i];
-		}
+        return new Vector(newComponents);
+    },
+    dot: function (otherVector) {
+        var sum = 0,
+            i;
 
-		return sum;
-	},
-	norm: function () {
-		if (!(this instanceof Vector)) {
-			throw "Command is applicable to vectors only.";
-		}
+        if (!(otherVector instanceof Vector) || !(this instanceof Vector)) {
+            throw "Command is applicable to vectors only.";
+        }
 
-		var sum = 0;
+        if (this.components.length != otherVector.components.length) {
+            throw "Cannot add Vectors of different size.";
+        }
 
-		for (var i = 0; i < this.components.length; i++) {
-			sum += this.components[i] * this.components[i];
-		}
+        for (i = 0; i < this.components.length; i++) {
+            sum += this.components[i] * otherVector.components[i];
+        }
 
-		return Math.sqrt(sum);
-	}
+        return sum;
+    },
+    norm: function () {
+        var sum = 0,
+            i;
+
+        if (!(this instanceof Vector)) {
+            throw "Command is applicable to vectors only.";
+        }
+
+        for (i = 0; i < this.components.length; i++) {
+            sum += this.components[i] * this.components[i];
+        }
+
+        return Math.sqrt(sum);
+    }
 };
 
 var a = new Vector([1, 2, 3]);

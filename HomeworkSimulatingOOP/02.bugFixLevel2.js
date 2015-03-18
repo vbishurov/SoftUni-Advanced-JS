@@ -1,32 +1,47 @@
 "use strict";
 
-function Person(firstName, lastName) {
-	this.firstName = firstName;
-	this.lastName = lastName;
-}
+var Person = (function () {
 
-Person.prototype = {
-	get firstName() {
-		return this._firstName;
-	},
-	set firstName(value) {
-		this._firstName = value;
-	},
-	get lastName() {
-		return this._lastName;
-	},
-	set lastName(value) {
-		this._lastName = value;
-	},
-	get fullName() {
-		return this.firstName + " " + this.lastName;
-	},
-	set fullName(value) {
-		var names = value.split(' ');
-		this.firstName = names[0];
-		this.lastName = names[1];
-	}
-};
+    function Person(firstName, lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+
+    Object.defineProperty(Person.prototype, 'firstName', {
+        get: function () {
+            return this._firstName;
+        },
+        set: function (value) {
+            this._firstName = value;
+        }
+    });
+
+    Object.defineProperty(Person.prototype, 'lastName', {
+        get: function () {
+            return this._lastName;
+        },
+        set: function (value) {
+            this._lastName = value;
+        }
+    });
+
+    Object.defineProperty(Person.prototype, 'fullName', {
+        get: function () {
+            return this.firstName + " " + this.lastName;
+        },
+        set: function (value) {
+            var items = value.split(' ');
+            this.firstName = items[0];
+            this.lastName = items[1];
+        }
+    });
+
+    Person.prototype.toString = function () {
+        return this.constructor.name;
+    };
+
+    return Person;
+}());
 
 var person = new Person("Peter", "Jackson");
 // Getting values

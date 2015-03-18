@@ -6,7 +6,7 @@ function traverse(selector) {
     traverseNode(elementToTraverse, '');
 
     function traverseNode(node, spacing) {
-        var child, elementString, elementClass, elementID;
+        var child, elementString, elementClass, elementID, i, len;
         spacing = spacing || '';
         if (node != elementToTraverse) {
             elementString = spacing + node.nodeName.toLowerCase() + ":";
@@ -24,7 +24,7 @@ function traverse(selector) {
             console.log(elementString);
         }
 
-        for (var i = 0, len = node.childNodes.length; i < len; i += 1) {
+        for (i = 0, len = node.childNodes.length; i < len; i += 1) {
             child = node.childNodes[i];
 
             if (child.nodeType === document.ELEMENT_NODE) {

@@ -1,9 +1,10 @@
 "use strict";
 
 Array.prototype.flatten = function flattern() {
-	var result = [];
+	var result = [],
+        i;
 
-	for (var i = 0; i < this.length; i++) {
+	for (i = 0; i < this.length; i++) {
 		if (this[i] instanceof Array) {
 			result = result.concat(this[i].flatten());
 		}

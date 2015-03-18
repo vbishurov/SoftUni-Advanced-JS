@@ -16,7 +16,9 @@ var specialConsole = (function () {
     }
 
     function formatMessage(string) {
-        var matches = string.match(/{\d+}/g);
+        var matches = string.match(/{\d+}/g),
+            i,
+            index;
         if (matches == null) {
             return string;
         }
@@ -33,8 +35,8 @@ var specialConsole = (function () {
             throw new Error;
         }
 
-        for (var i = 0; i < matches.length; i++) {
-            var index = parseInt(matches[i].substr(1)) + 1;
+        for (i = 0; i < matches.length; i++) {
+            index = parseInt(matches[i].substr(1)) + 1;
             if (typeof arguments[1][index] == 'object') {
                 string = string.replace(matches[i], arguments[1][index].toString());
             }

@@ -39,8 +39,9 @@ String.prototype.padRight = function (count, character) {
 };
 
 String.prototype.repeat = function (count) {
-	var result = '';
-	for (var i = 0; i < count; i++) {
+	var result = '',
+        i;
+	for (i = 0; i < count; i++) {
 		result += this;
 	}
 

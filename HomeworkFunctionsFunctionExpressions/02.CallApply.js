@@ -1,15 +1,20 @@
 "use strict";
 
 function printArgsInfo() {
-    var type;
+    var argsLength = arguments.length,
+        type,
+        i,
+        element;
 
-    for (var i = 0; i < arguments.length; i++) {
-        type = typeof arguments[i];
-        if (Array.isArray(arguments[i])) {
+    for (i = 0; i < argsLength; i++) {
+        element = arguments[i];
+        if (Array.isArray(element)) {
             type = "array";
+        } else {
+            type = typeof element;
         }
 
-        console.log(arguments[i] + " (" + type + ")");
+        console.log(element + " (" + type + ")");
     }
 }
 
